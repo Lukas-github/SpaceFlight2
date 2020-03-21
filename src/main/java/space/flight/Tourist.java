@@ -12,6 +12,7 @@ import java.util.List;
 public class Tourist {
     @Id
     @GeneratedValue
+    private Long id;
     private String name;
     private String surname;
     private String sex;
@@ -24,6 +25,13 @@ public class Tourist {
     public Tourist() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

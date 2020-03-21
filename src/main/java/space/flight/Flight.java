@@ -10,7 +10,7 @@ public class Flight {
 
     @Id
     @GeneratedValue
-
+    private Long id;
     private LocalDateTime timeOfDeparture;
     private LocalDateTime timeOfArrival;
     private int numberOfPlaces;
@@ -19,6 +19,14 @@ public class Flight {
 
 
     public Flight() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDateTime getTimeOfDeparture() {
