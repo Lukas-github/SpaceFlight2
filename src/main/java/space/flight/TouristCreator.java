@@ -1,18 +1,8 @@
 package space.flight;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity
-public class Tourist {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class TouristCreator {
     private String name;
     private String surname;
     private String sex;
@@ -22,24 +12,13 @@ public class Tourist {
     //private List<String> listOfFlights; - something wrong
 
 
-    public Tourist() {
-    }
-
-    public Tourist(String name, String surname, String sex, String country, String notes, LocalDate dateOfBirth){
+    public TouristCreator(String name, String surname, String sex, String country, String notes, LocalDate dateOfBirth) {
         this.name = name;
         this.surname = surname;
         this.sex = sex;
-        this. country = country;
+        this.country = country;
         this.notes = notes;
-        this.dateOfBirth=dateOfBirth;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getName() {
