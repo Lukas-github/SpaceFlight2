@@ -17,34 +17,32 @@ public class FlightController {
     private FlightRepository flightRepository;
 
     @Autowired
-    public FlightController (TouristRepository touristRepository, FlightRepository flightRepository){
+    public FlightController(TouristRepository touristRepository, FlightRepository flightRepository) {
         this.touristRepository = touristRepository;
         this.flightRepository = flightRepository;
     }
 
-   @GetMapping("/tourists")
-   public List<Tourist> getTourists{
+    @GetMapping("/tourists")
+    public List<Tourist> getTourists()
+
+    {
         return touristRepository.findAll();
     }
 
 
-
-
-
-
-@PostMapping("/tourists")
-    public ResponseEntity<?> addTourists (@RequestBody TouristCreator creator){
+    @PostMapping("/tourists")
+    public ResponseEntity<?> addTourists(@RequestBody TouristCreator creator) {
         String name = creator.getName();
         String surname = creator.getSurname();
         String sex = creator.getSex();
         String country = creator.getCountry();
         String note = creator.getNotes();
         LocalDate dateOfBirth = creator.getDateOfBirth();
-    Tourist tourist = new Tourist(name, surname, sex, country, note, dateOfBirth);
-    touristRepository.save(tourist);
+        Tourist tourist = new Tourist(name, surname, sex, country, note, dateOfBirth);
+        touristRepository.save(tourist);
 
-    return ResponseEntity.ok(tourist);
+        return ResponseEntity.ok(tourist);
 
 
-}
+    }
 }
