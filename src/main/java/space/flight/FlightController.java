@@ -7,8 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+
 
 
 @RestController
@@ -33,13 +36,26 @@ public class FlightController {
     @PostMapping("/tourists")
     public ResponseEntity<?> addTourists(@RequestBody TouristCreator creator) {
         String name = creator.getName();
+        String flightName = creator.getFlight();
         String surname = creator.getSurname();
         String sex = creator.getSex();
         String country = creator.getCountry();
         String note = creator.getNotes();
         LocalDate dateOfBirth = creator.getDateOfBirth();
-        Tourist tourist = new Tourist(name, surname, sex, country, note, dateOfBirth);
-        touristRepository.save(tourist);
+
+        Optional<Flight> flight2 = flightRepository.findFlightByName(flightName);
+        if (flight2.isPresent()) {
+            Tourist tourist = new Tourist(name, flight2.get(),  surname, sex, country, note, dateOfBirth);
+            touristRepository.save(tourist);
+
+            return ResponseEntity.ok(tourist);
+        } else {
+            throw new DataNotFoundException();
+
+        }
+
+
+
 
         return ResponseEntity.ok(tourist);
 

@@ -11,6 +11,7 @@ public class Flight {
     @Id
     @GeneratedValue
     private Long id;
+    private String name;
     private LocalDateTime timeOfDeparture;
     private LocalDateTime timeOfArrival;
     private int numberOfPlaces;
@@ -19,6 +20,14 @@ public class Flight {
 
 
     public Flight() {
+    }
+    public Flight(String name, LocalDateTime timeOfDeparture, LocalDateTime timeOfArrival, int numberOfPlaces, int numberOfTourists, double ticketPrice){
+        this.name=name;
+        this.timeOfDeparture=timeOfDeparture;
+        this.timeOfArrival=timeOfArrival;
+        this.numberOfPlaces=numberOfPlaces;
+        this.numberOfTourists=numberOfTourists;
+        this.ticketPrice=ticketPrice;
     }
 
     public Long getId() {

@@ -1,9 +1,6 @@
 package space.flight;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +17,16 @@ public class Tourist {
     private String notes;
     private LocalDate dateOfBirth;
     //private List<String> listOfFlights; - something wrong
-
+    @ManyToOne
+    @JoinColumn(name = "flight_id")
+    Flight flight;
 
     public Tourist() {
     }
 
-    public Tourist(String name, String surname, String sex, String country, String notes, LocalDate dateOfBirth){
+    public Tourist(String name, Flight flight, String surname, String sex, String country, String notes, LocalDate dateOfBirth){
         this.name = name;
+        this.flight = flight;
         this.surname = surname;
         this.sex = sex;
         this. country = country;
@@ -36,6 +36,14 @@ public class Tourist {
 
     public Long getId() {
         return id;
+    }
+
+    public Flight getFlight(){
+        return flight;
+    }
+
+    public void setFlight(Flight flight){
+        this.flight = flight;
     }
 
     public void setId(Long id) {
