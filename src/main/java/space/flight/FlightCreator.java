@@ -1,15 +1,9 @@
 package space.flight;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 
-@Entity
-public class Flight {
+public class FlightCreator {
 
-    @Id
-    @GeneratedValue
     private Long id;
     private String name;
     private LocalDateTime timeOfDeparture;
@@ -19,15 +13,13 @@ public class Flight {
     private double ticketPrice;
 
 
-    public Flight() {
-    }
-    public Flight(String name, LocalDateTime timeOfDeparture, LocalDateTime timeOfArrival, int numberOfSeats, int numberOfTourists, double ticketPrice){
-        this.name=name;
-        this.timeOfDeparture=timeOfDeparture;
-        this.timeOfArrival=timeOfArrival;
-        this.numberOfSeats =numberOfSeats;
-        this.numberOfTourists=numberOfTourists;
-        this.ticketPrice=ticketPrice;
+    public FlightCreator(String name, LocalDateTime timeOfDeparture, LocalDateTime timeOfArrival, int numberOfSeats, int numberOfTourists, double ticketPrice) {
+        this.name = name;
+        this.timeOfDeparture = timeOfDeparture;
+        this.timeOfArrival = timeOfArrival;
+        this.numberOfSeats = numberOfSeats;
+        this.numberOfTourists = numberOfTourists;
+        this.ticketPrice = ticketPrice;
     }
 
     public Long getId() {
@@ -36,6 +28,14 @@ public class Flight {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDateTime getTimeOfDeparture() {
@@ -58,8 +58,8 @@ public class Flight {
         return numberOfSeats;
     }
 
-    public void setNumberOfSeats(int numberOfPlaces) {
-        this.numberOfSeats = numberOfPlaces;
+    public void setNumberOfSeats(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
     }
 
     public int getNumberOfTourists() {

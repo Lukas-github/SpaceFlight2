@@ -9,16 +9,26 @@ public class TouristCreator {
     private String country;
     private String notes;
     private LocalDate dateOfBirth;
+    private String flight;
     //private List<String> listOfFlights; - something wrong
 
 
-    public TouristCreator(String name, String surname, String sex, String country, String notes, LocalDate dateOfBirth) {
+    public TouristCreator(String name, String surname, String sex, String country, String notes, LocalDate dateOfBirth, String flight ) {
         this.name = name;
         this.surname = surname;
         this.sex = sex;
         this.country = country;
         this.notes = notes;
         this.dateOfBirth = dateOfBirth;
+        this.flight = flight;
+    }
+
+    public String getFlight() {
+        return flight;
+    }
+
+    public void setFlight(String flight) {
+        this.flight = flight;
     }
 
     public String getName() {

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface FlightRepository extends CrudRepository<Tourist, Long> {
 
-    List<Flight> findAll();
+   List <Flight> findAllBy();
 
     Flight save (Flight flight);
 

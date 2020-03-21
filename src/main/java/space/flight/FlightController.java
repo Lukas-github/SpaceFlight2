@@ -1,17 +1,14 @@
 package space.flight;
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
 
 
 @RestController
@@ -24,15 +21,13 @@ public class FlightController {
         this.touristRepository = touristRepository;
         this.flightRepository = flightRepository;
     }
-
+// list of tourists
     @GetMapping("/tourists")
-    public List<Tourist> getTourists()
-
-    {
+    public List<Tourist> getTourists() {
         return touristRepository.findAll();
     }
 
-
+// add tourist
     @PostMapping("/tourists")
     public ResponseEntity<?> addTourists(@RequestBody TouristCreator creator) {
         String name = creator.getName();
@@ -45,7 +40,7 @@ public class FlightController {
 
         Optional<Flight> flight2 = flightRepository.findFlightByName(flightName);
         if (flight2.isPresent()) {
-            Tourist tourist = new Tourist(name, flight2.get(),  surname, sex, country, note, dateOfBirth);
+            Tourist tourist = new Tourist(name, flight2.get(), surname, sex, country, note, dateOfBirth);
             touristRepository.save(tourist);
 
             return ResponseEntity.ok(tourist);
@@ -53,12 +48,34 @@ public class FlightController {
             throw new DataNotFoundException();
 
         }
+    }
+// list of flights
+    @GetMapping("/flights")
+    public List<Flight> getFlights() {
+        return flightRepository.findAllBy();
+    }
 
-
-
-
-        return ResponseEntity.ok(tourist);
-
+// add flight
+    @PostMapping("/flights")
+    public ResponseEntity<?> addFlights(@RequestBody FlightCreator creator) {
+        String name = creator.getName();
+        LocalDateTime timeOfDeparture = creator.getTimeOfDeparture();
+        LocalDateTime timeOfArrival = creator.getTimeOfArrival();
+        int numberOfSeats = creator.getNumberOfSeats();
+        int numberOfTourists = creator.getNumberOfTourists();
+        double ticketPrice = creator.getTicketPrice();
+        Flight flight = new Flight(name, timeOfDeparture, timeOfArrival, numberOfSeats, numberOfTourists, ticketPrice);
+        flightRepository.save(flight);
+        return ResponseEntity.ok(flight);
 
     }
+    // delete tourist
+
+
+
+
 }
+
+
+
+
